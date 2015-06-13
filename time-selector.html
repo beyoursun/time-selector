@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>时间选择控件</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" type="text/css" href="ts.css">
+</head>
+<body>
+	<button id="sel">选择时间</button>
+	<div class="ts-container">
+		<div class="ts-wrapper">
+			<div class="ts-date">
+				<ul class="ts-year"></ul>
+				<ul class="ts-month"></ul>
+				<ul class="ts-day"></ul>
+				<span class="tip-year">年</span>
+				<span class="tip-month">月</span>
+				<span class="tip-day">日</span>
+			</div>
+			<div class="ts-time">
+				<ul class="ts-hour"></ul>
+				<ul class="ts-min"></ul>
+				<span class="tip-hour">时</span>
+				<span class="tip-min">分</span>
+			</div>
+			<div class="btn-container">
+				<a class="btn-ok">ok</a>
+				<a class="btn-cancel">cancel</a>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="ts.js"></script>
+<script type="text/javascript">
+var ts = new TimeSelector({
+	startYear: 2000,
+	endYear: 2022
+});
+
+var sel = document.querySelector('#sel');
+sel.addEventListener('click', function() {
+	ts.show();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+.ts-container {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: rgba(0,0,0,.2);
+	color: #333;
+	text-align: center;
+	font-size: 20px;
+	font-family: arial,verdana,sans-serif;
+	-webkit-user-select: none
+}
+
+.ts-container.notime .ts-time {
+	display: none
+}
+
+.ts-container.notime .ts-date {
+	width: 100%
+}
+
+.ts-container ul {
+	margin: 0;
+	padding: 0;
+	list-style: none
+}
+
+.ts-container li {
+	line-height: 1.6
+}
+
+.ts-wrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 200px;
+	background-color: #fff;
+	-webkit-transform: translate3d(-50%,-50%,0)
+}
+
+.ts-date:after,.ts-date:before,.ts-time:after,.ts-time:before {
+	left: 0;
+	content: "";
+	pointer-events: none
+}
+
+.ts-date,.ts-time {
+	position: relative;
+	float: left;
+	overflow: hidden;
+	width: 200px;
+	height: 8em
+}
+
+.ts-date:before,.ts-time:before {
+	position: absolute;
+	top: 50%;
+	box-sizing: border-box;
+	margin-top: -.8em;
+	width: 100%;
+	height: 1.6em;
+	border-top: 1px solid #bbb;
+	border-bottom: 1px solid #bbb
+}
+
+.ts-date:after,.ts-time:after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	background-image: -webkit-gradient(linear,0 0,0 100%,from(rgba(255,255,255,1)),to(rgba(255,255,255,1)),color-stop(.4,rgba(255,255,255,.75)),color-stop(.5,rgba(255,255,255,0)),color-stop(.6,rgba(255,255,255,.75)))
+}
+
+.ts-year {
+	width: 40%
+}
+
+.ts-day,.ts-month {
+	width: 30%
+}
+
+.ts-day,.ts-month,.ts-year {
+	float: left
+}
+
+.ts-hour,.ts-min {
+	float: left;
+	width: 50%
+}
+
+.tip-day,.tip-hour,.tip-min,.tip-month,.tip-year {
+	position: absolute;
+	top: 50%;
+	z-index: 1;
+	margin: -.2em 0 0 -1.2em;
+	width: 1em;
+	color: #bbb;
+	font-size: 12px;
+	line-height: 1;
+	pointer-events: none
+}
+
+.tip-year {
+	left: 40%
+}
+
+.tip-month {
+	left: 70%
+}
+
+.tip-day {
+	left: 100%
+}
+
+.tip-hour {
+	left: 50%
+}
+
+.tip-min {
+	left: 100%
+}
+
+.btn-container {
+	clear: both;
+	overflow: hidden
+}
+
+.ts-container .btn-cancel,.ts-container .btn-ok {
+	float: right;
+	display: block;
+	width: 80px;
+	font-size: 16px;
+	line-height: 2
+}
+
+.ts-container .btn-cancel:active,.ts-container .btn-ok:active {
+	background-color: #eee
+}
+
+.ts-container .btn-ok {
+	color: #37a5f1
+}
+
+@media (min-width:500px) {
+	.ts-wrapper {
+		width: 400px
+	}
+}

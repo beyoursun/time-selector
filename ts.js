@@ -89,6 +89,8 @@ TimeSelector.prototype.bind = function() {
 	};
 
 	var moveHandler = function(e) {
+		e.preventDefault();
+
 		offsetY = e.touches[0].pageY - startY + curY;
 
 		this.style.webkitTransform = 'translate3d(0,' + offsetY + 'px,0)';

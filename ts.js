@@ -37,6 +37,13 @@ TimeSelector.prototype.init = function() {
 	var offsetY = - (this.date.getDate() - 3) * 32;
 	dayList.style.webkitTransform = 'translate3d(0,' + offsetY + 'px,0)';
 
+	// 大小月
+	var monthday = getDay(this.date.getFullYear(), this.date.getMonth() + 1);
+	var overflowday = document.querySelectorAll('.ts-day li:nth-child(n+' + (monthday + 1) + ')');
+    for (var i = 0; i < overflowday.length; i++) {
+    	overflowday[i].style.display = 'none';
+    }
+
 	var hourList = document.querySelector('.ts-hour');
 	var hour;
 	for (var i = 0; i < 24; i++) {
@@ -85,6 +92,11 @@ TimeSelector.prototype.bind = function() {
 
 		length = this.getElementsByTagName('li').length;
 
+		// 大小月
+		if (this.classList.contains('ts-day')) {
+			length = getDay(date.getFullYear(), date.getMonth() + 1);
+		}
+
 		this.style.webkitTransition = 'none';
 	};
 
@@ -105,8 +117,40 @@ TimeSelector.prototype.bind = function() {
 		};
 
 		if (this.classList.contains('ts-year')) {
+			// 大小月
+			var monthday = getDay(- offsetY / 32 + 2 + that.startYear, date.getMonth() + 1);
+			var overflowday = document.querySelectorAll('.ts-day li:nth-child(n+' + (monthday + 1) + ')');
+			var after28day = document.querySelectorAll('.ts-day li:nth-child(n+29)');
+		    for (var i = 0; i < after28day.length; i++) {
+		    	after28day[i].style.display = 'block';
+		    }
+		    for (var i = 0; i < overflowday.length; i++) {
+		    	overflowday[i].style.display = 'none';
+		    }
+		    if (date.getDate() > monthday) {
+		    	date.setDate(monthday);
+		    	var dayList = document.querySelector('.ts-day')
+		    	dayList.style.webkitTransform = 'translate3d(0,' + (-(monthday - 3) * 32) + 'px,0)'
+		    }
+
 			date.setFullYear(- offsetY / 32 + 2 + that.startYear);
 		} else if (this.classList.contains('ts-month')) {
+			// 大小月
+			var monthday = getDay(date.getFullYear(), - offsetY / 32 + 3);
+			var overflowday = document.querySelectorAll('.ts-day li:nth-child(n+' + (monthday + 1) + ')');
+			var after28day = document.querySelectorAll('.ts-day li:nth-child(n+29)');
+		    for (var i = 0; i < after28day.length; i++) {
+		    	after28day[i].style.display = 'block';
+		    }
+		    for (var i = 0; i < overflowday.length; i++) {
+		    	overflowday[i].style.display = 'none';
+		    }
+		    if (date.getDate() > monthday) {
+		    	date.setDate(monthday);
+		    	var dayList = document.querySelector('.ts-day')
+		    	dayList.style.webkitTransform = 'translate3d(0,' + (-(monthday - 3) * 32) + 'px,0)'
+		    }
+
 			date.setMonth(- offsetY / 32 + 2);
 		} else if (this.classList.contains('ts-day')) {
 			date.setDate(- offsetY / 32 + 3);
@@ -158,6 +202,12 @@ TimeSelector.prototype.bind = function() {
 	})
 };
 
+TimeSelector.prototype.ok = function(callback) {
+	var ok = document.querySelector('btn-ok');
+
+	ok.addEventListener('click', callback);
+}
+
 TimeSelector.prototype.toChinese = function() {
 	return this.date.getFullYear() + ' 年 ' + (this.date.getMonth() + 1) + ' 月 ' + this.date.getDate() + ' 日';
 }
@@ -178,4 +228,14 @@ function digit2 (n) {
 	} else {
 		return n;
 	}
+}
+
+function getDay (year, month) {
+	var day = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+			day[1] = 29
+	}
+
+	return day[month - 1]
 }

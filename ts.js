@@ -240,5 +240,5 @@
 	}
 
 	// 全局变量供外部使用
-	window.TS = new TimeSelector({});
+	window.TimeSelector = TimeSelector;
 })();

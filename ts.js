@@ -198,18 +198,16 @@ TimeSelector.prototype.bind = function() {
 	ok.addEventListener('click', function() {
 		that.date = date;
 		that.hide();
-		alert(that.toChinese());
-	})
+	});
 };
 
 TimeSelector.prototype.ok = function(callback) {
-	var ok = document.querySelector('btn-ok');
-
+	var ok = document.querySelector('.btn-ok');
 	ok.addEventListener('click', callback);
 }
 
-TimeSelector.prototype.toChinese = function() {
-	return this.date.getFullYear() + ' 年 ' + (this.date.getMonth() + 1) + ' 月 ' + this.date.getDate() + ' 日';
+TimeSelector.prototype.toString = function() {
+	return this.date.getFullYear() + '-' + (this.date.getMonth() + 1) + '-' + this.date.getDate() + ' ' + this.date.getHours() + ':' + this.date.getMinutes();
 }
 
 TimeSelector.prototype.hide = function() {

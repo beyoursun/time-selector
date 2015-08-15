@@ -5,9 +5,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" type="text/css" href="ts.css">
+	<style type="text/css">
+	.wrapper {text-align: center; margin-top: 50%;}
+	.sel {padding: 10px 20px; border: 2px solid #37a5f1; border-radius: 5px; font-weight: bold; font-size: 18px; color: #37a5f1; background-color: transparent;}
+	.view {display: inline-block; margin: 20px;}
+	</style>
 </head>
 <body>
-	<button id="sel">选择时间</button>
+	<div class="wrapper">
+		<button class="sel">选择时间</button><br>
+		<a class="view" href="https://github.com/beyoursun/time-selector">View on Github</a>
+	</div>
+
 	<div class="ts-container">
 		<div class="ts-wrapper">
 			<div class="ts-date">
@@ -25,8 +34,8 @@
 				<span class="tip-min">分</span>
 			</div>
 			<div class="btn-container">
-				<a class="btn-ok">ok</a>
-				<a class="btn-cancel">cancel</a>
+				<a class="btn-ok">确定</a>
+				<a class="btn-cancel">取消</a>
 			</div>
 		</div>
 	</div>
@@ -38,9 +47,15 @@ var ts = new TimeSelector({
 	endYear: 2022
 });
 
-var sel = document.querySelector('#sel');
+var sel = document.querySelector('.sel');
+var view = document.querySelector('.view');
+
 sel.addEventListener('click', function() {
 	ts.show();
+});
+
+ts.ok(function() {
+	sel.innerHTML = ts.toString();
 });
 </script>
 </body>

@@ -42,20 +42,19 @@
 
 <script type="text/javascript" src="ts.js"></script>
 <script type="text/javascript">
-var ts = new TimeSelector({
-	startYear: 2000,
-	endYear: 2022
-});
+
+TS.startYear = 2000;
+TS.endYear = 2022;
 
 var sel = document.querySelector('.sel');
 var view = document.querySelector('.view');
 
 sel.addEventListener('click', function() {
-	ts.show();
+	TS.show();
 });
 
-ts.ok(function() {
-	sel.innerHTML = ts.toString();
+TS.ok(function() {
+	sel.innerHTML = TS.toString();
 });
 </script>
 </body>
